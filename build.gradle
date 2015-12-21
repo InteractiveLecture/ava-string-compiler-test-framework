@@ -1,0 +1,47 @@
+// Apply the java plugin to add support for Java
+plugins {
+  id "com.jfrog.bintray" version "1.4"
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+bintray {
+  user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    pkg {
+      repo = 'java'
+        name = 'exercise-test-framework'
+        userOrg = 'interactivelecture'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/InteractiveLecture/java-exercise-test-framework.git'
+        version {
+          name = '1.0.0'
+        }
+    }
+  publications = ['MyPublication']
+}
+
+publishing {
+  publications {
+    MyPublication(MavenPublication) {
+      from components.java
+        groupId 'org.interactivelecture.java'
+        artifactId 'exercise-test-framework'
+        version '1.0.0'
+    }
+  }
+}
+
+repositories {
+  maven {
+    url  "http://dl.bintray.com/interactivelecture/java"
+  }
+  jcenter()
+}
+import javax.tools.ToolProvider
+
+dependencies {
+  compile 'junit:junit:4.12'
+    compile 'org.interactivelecture.java:exercise-test-api:1.0.0'
+}

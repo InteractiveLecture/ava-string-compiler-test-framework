@@ -15,6 +15,7 @@ package org.lecture.compiler.testframework;
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
+
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 import org.lecture.compiler.api.ExerciseContext;
