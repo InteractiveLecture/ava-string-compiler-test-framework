@@ -39,7 +39,7 @@ public class LectureRunner extends BlockJUnit4ClassRunner {
                        ExerciseContext context) throws InitializationError {
 
     super(klass);
-    this.context = this.context;
+    this.context = context;
   }
 
   @Override
